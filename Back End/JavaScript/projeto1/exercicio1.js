@@ -1,7 +1,7 @@
-let av1 = 0.1;
-let av2 = 3.0;
-let rec1 = 8.0;
-let rec2 = 3.5;
+let av1 = 5.0;
+let av2 = 6.0;
+let rec1 = 7.0;
+let rec2 = 3.0;
 let nota1;
 let nota2;
 let total;
