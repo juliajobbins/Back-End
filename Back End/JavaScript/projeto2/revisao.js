@@ -5,6 +5,7 @@
 let nome = "Julia Fernanda Jobbins";
 let numero = 15;
 console.log("O nome é: " + nome + "\nO número na chamada é: " + numero);
+
 // 2) Criação de uma lista
 
 let jogos = ["Roblox", "GTA V", "Minecraft"];
@@ -31,6 +32,7 @@ console.log("Nome da pessoa: " + animefav.nomepessoa);
 console.log("Anime: " + animefav.nomeanime);
 console.log("Ano de lançamento: " + animefav.anolancamento);
 console.log("Nota no IMDB: " + animefav.notaIMDB);
+
 // 5) Utilização de if-else
 
 if(animefav.notaIMDB <= 4.0){
@@ -42,6 +44,7 @@ if(animefav.notaIMDB <= 4.0){
 }
 
 // 6) Criação de uma função que analisa os dados da previsão do tempo
+
 const previsaoTempo = [
     {
         dia: "Segunda",
