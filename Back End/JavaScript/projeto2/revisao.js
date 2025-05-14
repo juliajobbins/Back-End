@@ -4,18 +4,17 @@
 
 let nome = "Julia Fernanda Jobbins";
 let numero = 15;
-console.log("O nome é: " + nome + "\nO número na chamada é: " + numero);
-
 // 2) Criação de uma lista
 
 let jogos = ["Roblox", "GTA V", "Minecraft"];
 
 // 3) Utilização de um laço while
 
-console.log("----- Jogos favoritos da Julia -----")
+console.log("##### Exercício 3 #####")
+console.log(`----- Jogos favoritos da ${nome} -----`)
 let indice = 0;
 while(indice < jogos.length){
-    console.log("Jogo " + (indice + 1)+ ": " + jogos[indice]);
+    console.log(`Jogo ${indice + 1}: ${jogos[indice]}`);
     indice++;
 }
 
@@ -28,13 +27,9 @@ let animefav = {
     anolancamento: 2013,
     notaIMDB: 9.1
 }
-console.log("Nome da pessoa: " + animefav.nomepessoa);
-console.log("Anime: " + animefav.nomeanime);
-console.log("Ano de lançamento: " + animefav.anolancamento);
-console.log("Nota no IMDB: " + animefav.notaIMDB);
 
 // 5) Utilização de if-else
-
+console.log("##### Exercício 5 #####")
 if(animefav.notaIMDB <= 4.0){
     console.log("O anime possui uma nota considerada baixa.")
 }else if(animefav.notaIMDB >= 4.1 && animefav.notaIMDB <= 7.0){
@@ -44,7 +39,7 @@ if(animefav.notaIMDB <= 4.0){
 }
 
 // 6) Criação de uma função que analisa os dados da previsão do tempo
-
+console.log("##### Exercício 6 #####")
 const previsaoTempo = [
     {
         dia: "Segunda",
@@ -81,9 +76,9 @@ function verificaChuva(previsaoTempo){
     previsaoTempo.forEach(
         function(dia){
         if(dia.chanceDeChuva > 50){
-            console.log(dia.dia + ": levar guarda-chuva");
+            console.log(`${dia.dia}: levar guarda-chuva`)
         } else {
-            console.log(dia.dia +": tempo agradável");
+            console.log(`${dia.dia}: tempo agradável`)
         }
     })
 }
