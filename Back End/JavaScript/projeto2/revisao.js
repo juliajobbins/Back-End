@@ -4,6 +4,7 @@
 
 let nome = "Julia Fernanda Jobbins";
 let numero = 15;
+
 // 2) Criação de uma lista
 
 let jogos = ["Roblox", "GTA V", "Minecraft"];
@@ -25,20 +26,22 @@ let animefav = {
     nomepessoa: nome,
     nomeanime: "Attack on Titan",
     anolancamento: 2013,
-    notaIMDB: 9.1
+    notaIMDb: 9.1
 }
 
 // 5) Utilização de if-else
+
 console.log("##### Exercício 5 #####")
-if(animefav.notaIMDB <= 4.0){
+if(animefav.notaIMDb <= 4.0){
     console.log("O anime possui uma nota considerada baixa.")
-}else if(animefav.notaIMDB >= 4.1 && animefav.notaIMDB <= 7.0){
+}else if(animefav.notaIMDb >= 4.1 && animefav.notaIMDb <= 7.0){
     console.log("O anime possui uma nota considerada razoável")
-}else if(animefav.notaIMDB > 7.0){
+}else if(animefav.notaIMDb > 7.0){
     console.log("O anime é muito bom!")
 }
 
 // 6) Criação de uma função que analisa os dados da previsão do tempo
+
 console.log("##### Exercício 6 #####")
 const previsaoTempo = [
     {
