@@ -78,7 +78,7 @@ function verificaChuva(previsaoTempo){
     previsaoTempo.forEach(
         function(dia){
         if(dia.chanceDeChuva > 50){
-            console.log(dia.dia + ": levar guarda-chuva")
+            console.log(dia.dia + ": levar guarda-chuva");
         } else {
             console.log(dia.dia +": tempo agradável");
         }
