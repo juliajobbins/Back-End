@@ -73,6 +73,7 @@
     </style>
     <script>
       function pesquisarCEP(cep){
+        erro.textContent= ""
         //Expressão regular para validar o CEP.
         var validacep = /^[0-9]{8}$/;
         if(validacep.test(cep)){
@@ -86,6 +87,7 @@
         }
       }
       function preencherCEP(conteudo){
+        erro.textContent= ""
         if("erro" in conteudo){
           document.getElementById("rua").value = "";
           document.getElementById("bairro").value = "";
