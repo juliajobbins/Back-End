@@ -6,10 +6,44 @@ app.use(express.json())
 const db = require("./db")
 const bcrypt = require("bcrypt")
 
-app.post("/cadastrar", (req, res)=>{
+app.post("/cadastrar", async (req, res)=>{
   const cliente = req.body
   const senhaCript = bcrypt.hashSync(cliente.senha, 10)
-  res.send(senhaCript)
+  try {
+    const resultado = await db.pool.query(
+      `INSERT INTO clientes (
+        nome_completo, 
+        cpf, 
+        estado, 
+        cidade, 
+        bairro, 
+        n_casa, 
+        rua, 
+        cep, 
+        email, 
+        telefone, 
+        senha) VALUES (
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+          )`,
+          [
+            cliente.nome_completo,
+            cliente.cpf,
+            cliente.estado,
+            cliente.cidade,
+            cliente.bairro,
+            cliente.n_casa,
+            cliente.rua,
+            cliente.cep,
+            cliente.email,
+            cliente.telefone,
+            senhaCript
+          ]
+    )
+    res.status(200).send("Cliente cadastrado!")
+  } catch (erro) {
+    res.status(500).send("Erro interno")
+    console.log(erro)
+  }
 })
 app.get("/usuarios", (req, res)=>{
   res.send(usuarios)
