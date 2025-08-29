@@ -45,8 +45,13 @@ app.post("/cadastrar", async (req, res)=>{
     console.log(erro)
   }
 })
-app.get("/usuarios", (req, res)=>{
-  res.send(usuarios)
+app.get("/clientes", async (req, res)=>{
+  try {
+    const resultado = await db.pool.query("SELECT * FROM clientes")
+    res.status(200).json(resultado[0])
+  } catch (erro) {
+    res.status(500).send("erro")
+  }
 })
 
 app.listen(port, ()=>{
