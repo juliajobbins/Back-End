@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Cliente - Libretto</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #4b3a2f; /* fundo marrom escuro */
+      color: #2f5d34;
+    }
+
+    header {
+      background-color: #e8e1d1; /* bege pergaminho */
+      border-bottom: 4px solid #c59a2d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 75px;
+      margin-right: 15px;
+    }
+
+    .texto-logo h1 {
+      margin: 0;
+      font-size: 30px;
+      font-family: 'Georgia', serif;
+      color: #c59a2d; /* dourado */
+    }
+
+    .texto-logo p {
+      margin: 0;
+      font-size: 14px;
+      font-style: italic;
+      color: #2f5d34; /* verde folha */
+    }
+
+    nav a {
+      color: #2f5d34;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #c59a2d;
+    }
+
+    main {
+      padding: 30px;
+    }
+
+    form {
+      background-color: #e8e1d1; /* bege pergaminho */
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+      width: 50%;
+      max-width: 600px;
+      margin: 40px auto;
+      border: 2px solid #c59a2d;
+    }
+
+    form label {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #2f5d34;
+      display: block;
+      text-align: left;
+    }
+
+    .input-texto {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 15px auto;
+      padding: 10px;
+      background-color: #f2ede4; /* bege suave */
+      border: 2px solid #c59a2d;
+      border-radius: 8px;
+      box-shadow: inset 1px 1px 3px rgba(0,0,0,0.15);
+      font-size: 1em;
+    }
+
+    input[type="submit"] {
+      background-color: #2f5d34;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px auto 0 auto;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #c59a2d;
+    }
+
+    input[type="submit"]:active {
+      transform: scale(0.96);
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      background-color: #2f5d34;
+      color: white;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+  </style>
+
+  <script>
+    function pesquisarCEP(cep){
+      erro.textContent= ""
+      var validacep = /^[0-9]{8}$/;
+      if(validacep.test(cep)){
+        const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherCEP"
+        var script = document.createElement('script');
+        script.src = link
+        document.body.appendChild(script);
+      } else {
+        erro.textContent = "CEP digitado incorretamente!"
+        document.getElementById("cep").value = "";
+      }
+    }
+    function preencherCEP(conteudo){
+      erro.textContent= ""
+      if("erro" in conteudo){
+        document.getElementById("rua").value = "";
+        document.getElementById("bairro").value = "";
+        document.getElementById("cidade").value = "";
+        document.getElementById("estado").value = "";
+        erro.textContent = "CEP não encontrado, confirme o CEP ou preencha os dados manualmente"
+      } else {
+        document.getElementById("rua").value = conteudo.logradouro;
+        document.getElementById("bairro").value = conteudo.bairro;
+        document.getElementById("cidade").value = conteudo.localidade;
+        document.getElementById("estado").value = conteudo.uf;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="image-removebg-preview.png" alt="Logo Libretto">
+      <div class="texto-logo">
+        <h1>LIBRETTO</h1>
+        <p>Cada livro, uma ópera da alma.</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="meusdados.html">Meus Dados</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id = "form-cliente">
+      <label for="nome_completo">Nome completo:</label>
+      <input type="text" id="nome_completo" class="input-texto" required>
+
+      <label for="cpf">CPF:</label>
+      <input type="text" id="cpf" class="input-texto" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" class="input-texto" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" class="input-texto" required>
+
+      <label for="cep">CEP:</label>
+      <input type="text" id="cep" class="input-texto" onblur="pesquisarCEP(this.value)" required>
+      <p id="erro" style="color:red; font-size: 0.9em;"></p>
+
+      <label for="rua">Rua:</label>
+      <input type="text" id="rua" class="input-texto" required>
+
+      <label for="numero">Número:</label>
+      <input type="number" id="numero" class="input-texto" required>
+
+      <label for="bairro">Bairro:</label>
+      <input type="text" id="bairro" class="input-texto" required>
+
+      <label for="cidade">Cidade:</label>
+      <input type="text" id="cidade" class="input-texto" required>
+
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" class="input-texto" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" class="input-texto" required>
+
+      <input type="submit" value="Cadastrar" class="enviar" id="btn-enviar">
+    </form>
+  </main>
+
+  <footer>
+    © 2025 Libretto - Cada livro, uma ópera da alma.
+  </footer>
+</body>
+</html>
