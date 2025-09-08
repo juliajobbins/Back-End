@@ -1,15 +1,26 @@
 const form = document.getElementById("form-cliente")
 const btnEnviar = document.getElementById("btn-enviar")
 
-form.addEventListener("submit", (event)=>{
+form.addEventListener("submit", async (event)=>{
     event.preventDefault() // evita recarregar a página antes de enviar os dados
     // pegar dados do formulário
     const dados = pegarDadosCliente();
     // enviar dados para a API
     try {
-
+        const resposta = await fetch("http://localhost:3002/cadastrar", 
+        {
+                method: "POST",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(dados)
+            }
+        )
+        if (!resposta.ok) {
+            throw new Error("Erro na API")
+        }
+        alert("Cliente cadastrado com sucesso!")
+        form.reset()
     } catch {
-        
+        alert("Erro ao cadastrar")
     }
 })
 
