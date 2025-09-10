@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Cliente - Libretto</title>
+  <title>Libretto - Cadastro de Clientes</title>
   <style>
     body {
       margin: 0;
@@ -126,6 +126,30 @@
       font-size: 0.9em;
       font-style: italic;
     }
+    /* TOAST */
+    .toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #ff5dc1;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s, bottom 0.5s;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+      bottom: 50px;
+    }
   </style>
 
   <script>
@@ -170,7 +194,7 @@
       </div>
     </div>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="home.html">Home</a>
       <a href="cadastro.html">Cadastro</a>
       <a href="meusdados.html">Meus Dados</a>
     </nav>
@@ -192,7 +216,7 @@
 
       <label for="cep">CEP:</label>
       <input type="text" id="cep" class="input-texto" onblur="pesquisarCEP(this.value)" required>
-      <p id="erro" style="color:red; font-size: 0.9em;"></p>
+      <p id="erro" style="color:rgb(255, 0, 0); font-size: 0.9em;"></p>
 
       <label for="rua">Rua:</label>
       <input type="text" id="rua" class="input-texto" required>
@@ -214,6 +238,8 @@
 
       <input type="submit" value="Cadastrar" class="enviar" id="btn-enviar">
     </form>
+    
+    <div id="toast" class="toast"></div>
   </main>
 
   <footer>
@@ -222,3 +248,4 @@
   <script src = "./script/cadastro.js"></script>
 </body>
 </html>
+
