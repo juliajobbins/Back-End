@@ -17,10 +17,10 @@ form.addEventListener("submit", async (event)=>{
         if (!resposta.ok) {
             throw new Error("Erro na API")
         }
-        alert("Cliente cadastrado com sucesso!")
+        mostrarToast("Cadastro enviado com sucesso!", true);
         form.reset()
     } catch {
-        alert("Erro ao cadastrar")
+        mostrarToast("Erro ao enviar cadastro", false);
     }
 })
 
